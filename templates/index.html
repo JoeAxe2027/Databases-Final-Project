@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1><strong>Classic Models Dashboard</strong></h1>
+<p>Welcome to the Classic Models Dashboard. Use the select box to choose the type of report you would like to view.</p>
+
+<form method="post">
+    <label for="report_type">Choose Report Option:</label><br>
+    <select name="report_type" id="report_type">
+        <option value="">Choose an Option</option>
+        <option value="products">Product Reports</option>
+        <option value="customers">Customer Reports</option>
+        <option value="employees">Employee Reports</option>
+    </select><br><br>
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
