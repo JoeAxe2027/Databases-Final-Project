@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>View Customer Reports</h1>
+
+<form method="post">
+    <label for="report">Select Report Option:</label><br>
+    <select name="report" id="report">
+        <option value="">Choose a Report</option>
+        <option value="customerOrderTotals">Customer Order Totals</option>
+        <option value="customerPaymentTotals">Customer Payment Totals</option>
+    </select><br><br>
+
+    <label for="year">Select Year:</label><br>
+    <select name="year" id="year">
+        {% for y in years %}
+            <option value="{{ y }}">{{ y }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <button type="submit">Generate Report</button>
+</form>
+
+{% if graph %}
+    <hr>
+    <object type="image/svg+xml" data="{{ graph }}"></object>
+{% endif %}
+
+{% if data %}
+
+    <table border="1" cellpadding="5" cellspacing="0">
+        <tr>
+            {% for col in data[0].keys() %}
+                <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in data %}
+            <tr>
+                {% for value in row.values() %}
+                    <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+{% endblock %}
